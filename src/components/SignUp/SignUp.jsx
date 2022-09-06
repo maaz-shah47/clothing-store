@@ -16,7 +16,6 @@ const defaultValues = {
 const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultValues)
   const {displayName, email, password, confirmPassword} = formFields
-  const {setCurrentUser} = useContext(UserContext)
 
   const resetFormFields = () => {
     setFormFields(defaultValues)
@@ -39,7 +38,6 @@ const SignUp = () => {
       const {user} = await createAuthUserWithEmailAndPassword(email, password)
 
       await createUser(user, {displayName})
-      setCurrentUser(user)
       resetFormFields()
     } catch (error) {
       console.log('Error while login', error.message)

@@ -12,7 +12,6 @@ const defaultValues = {
 }
 
 const SignIn = () => {
-  const { setCurrentUser } = useContext(UserContext)
   const [formFields, setFormFields] = useState(defaultValues)
   const {email, password } = formFields
 
@@ -32,8 +31,7 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await userSignInWithEmailAndPassword(email, password)
-    setCurrentUser(response)
+    await userSignInWithEmailAndPassword(email, password)
 
     try {
     } catch (error) {
