@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import FormInput from '../formInput/FormInput'
 import { createAuthUserWithEmailAndPassword, createUser } from '../../utils/firebase'
+import { UserContext } from '../../contexts/user-context'
 
 import './signup.styles.scss'
 import Button from '../button/Button'
@@ -15,6 +16,7 @@ const defaultValues = {
 const SignUp = () => {
   const [formFields, setFormFields] = useState(defaultValues)
   const {displayName, email, password, confirmPassword} = formFields
+  const {setCurrentUser} = useContext(UserContext)
 
   const resetFormFields = () => {
     setFormFields(defaultValues)
@@ -37,10 +39,11 @@ const SignUp = () => {
       const {user} = await createAuthUserWithEmailAndPassword(email, password)
 
       await createUser(user, {displayName})
+      setCurrentUser(user)
+      resetFormFields()
     } catch (error) {
       console.log('Error while login', error.message)
     }
-    resetFormFields()
   }
   return (
     <div className='sign-up-container'>

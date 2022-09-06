@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import FormInput from '../formInput/FormInput'
 import { userSignInWithEmailAndPassword, createUser, signInWithGooglePopup } from '../../utils/firebase'
+import { UserContext } from '../../contexts/user-context'
 
 import './signin.styles.scss'
 import Button from '../button/Button'
@@ -11,6 +12,7 @@ const defaultValues = {
 }
 
 const SignIn = () => {
+  const { setCurrentUser } = useContext(UserContext)
   const [formFields, setFormFields] = useState(defaultValues)
   const {email, password } = formFields
 
@@ -31,7 +33,8 @@ const SignIn = () => {
     event.preventDefault();
 
     const response = await userSignInWithEmailAndPassword(email, password)
-    console.log(response)
+    setCurrentUser(response)
+
     try {
     } catch (error) {
       console.log('Error while login', error.message)
