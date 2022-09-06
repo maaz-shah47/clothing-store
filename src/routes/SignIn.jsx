@@ -1,4 +1,5 @@
 import React from 'react'
+import SignUp from '../components/SignUp/SignUp';
 import { createUser, signInWithGooglePopup } from '../utils/firebase'
 
 const SignIn = () => {
@@ -13,6 +14,7 @@ const SignIn = () => {
     <>
       <div>SignIn</div>
       <button onClick={loginUser}>Sign in</button>
+      <SignUp />
     </>
   )
 }
