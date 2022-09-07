@@ -5,9 +5,13 @@ import { signOutUser } from '../utils/firebase'
 
 import {ReactComponent as Logo} from '../assets/crown.svg'
 import './navigation.styles.scss'
+import CartIcon from '../components/cartIcon/CartIcon'
+import CartDropDown from '../components/cartDropDown/CartDropDown'
+import { CartContext } from '../contexts/cart-context'
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext)
+  const { cartIsOpen } = useContext(CartContext)
 
   return (
     <Fragment>
@@ -24,7 +28,9 @@ const Navigation = () => {
             <span className='nav-link' onClick={signOutUser}>Sign Out</span>
             ) : ( <Link className='nav-link' to='/sign-in'>Sign In</Link> )
           }
+          <CartIcon />
         </div>
+        {cartIsOpen && <CartDropDown />  }
       </div>
       <Outlet />
     </Fragment>
