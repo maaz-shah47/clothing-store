@@ -1,8 +1,6 @@
 import React, {createContext, useState, useEffect} from 'react'
 import { getCategoriesAndDocuments } from '../utils/firebase'
 
-import SHOP_DATA from '../shop-data.js'
-
 export const ProductsContext = createContext({
   products: {},
 })
