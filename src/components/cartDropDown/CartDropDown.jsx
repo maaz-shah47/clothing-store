@@ -15,10 +15,12 @@ const CartDropDown = () => {
   const navigateCheckoutPageHandler = () => {
     navigate('/checkout')
   }
+  const isEmpty = cartItems.length <= 0
+
   return (
     <div className='cart-dropdown-container'>
       <div className='cart-items'>
-        {cartItems.map(item => <CartItem key={item.id} cartItem={item} />)}
+        {isEmpty ? <span>Cart Is Empty</span> : cartItems.map(item => <CartItem key={item.id} cartItem={item} />)}
       </div>
       <Button onClick={navigateCheckoutPageHandler}>Checkout</Button>
     </div>
