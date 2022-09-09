@@ -12,7 +12,7 @@ import './navigation.styles.scss'
 const Navigation = () => {
   const currentUser = useSelector((state) => state.user.currentUser)
   const isCartOpen = useSelector(selectIsCartOpen)
-
+  
   return (
     <Fragment>
       <div className='navigation'>
